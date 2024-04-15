@@ -74,7 +74,7 @@ def EditProfile(request):
     context = {
         'form':form,
     }
-    return render(request, 'editprofile.html', context)
+    return render(request, 'edit_profile.html', context)
 
 def follow(request, username, option):
     user = request.user
@@ -112,7 +112,7 @@ def register(request):
                                     password=form.cleaned_data['password1'],)
             login(request, new_user)
             # return redirect('editprofile')
-            return redirect('index')
+            return redirect('home')
             
 
 
