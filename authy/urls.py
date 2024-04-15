@@ -7,6 +7,7 @@ from authy.views import UserProfile, EditProfile
 urlpatterns = [
     # Profile Section
     path('profile/edit', EditProfile, name="editprofile"),
+    path('<username>/', UserProfile, name="profile"),
 
     # User Authentication
     path('sign-up/', views.register, name="sign-up"),
