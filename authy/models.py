@@ -9,6 +9,8 @@ from django.db.models.signals import post_save
 import uuid
 from django.utils import timezone
 from post.models import Post
+from django.dispatch import receiver
+
 
 
 class Profile(models.Model):
@@ -38,12 +40,7 @@ class Profile(models.Model):
             img.save(self.image.path)
 
 
+@receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-	if created:
-		Profile.objects.create(user=instance)
-
-def save_user_profile(sender, instance, **kwargs):
-	instance.profile.save()
-
-post_save.connect(create_user_profile, sender=User)
-post_save.connect(save_user_profile, sender=User)
+    if created:
+        Profile.objects.create(user=instance)
